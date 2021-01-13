@@ -36,22 +36,26 @@ fi
 rm -f AppDir/AppRun
 # ---
 
-# --- Create new AppRun which sets relative library path before calling binary
-cat > ./AppDir/AppRun <<\EOF
+# --- Create new AppRun which sets relative library path before calling binary and set it executable
+cat > AppDir/AppRun <<\EOF
 #!/bin/bash
 APPDIR="$(dirname "$(readlink -f "${0}")")"
 export LD_LIBRARY_PATH="${APPDIR}/usr/lib:${LD_LIBRARY_PATH}"
 ${APPDIR}/usr/bin/ishiiruka
 EOF
+chmod +x AppDir/AppRun
 # ---
 
-# Copy needed files/folders
+# --- Copy needed files/folders
 cp Binaries/license.txt ${APPDIR_BIN}
 cp Binaries/Changelog.txt ${APPDIR_BIN}
 cp Binaries/traversal_server ${APPDIR_BIN}
+# ---
 
-# -- Remove appimage if it exists already
+# --- Remove appimage if it exists already
 rm -f ${APPIMAGE_STRING}
+# ---
 
 # --- Make appimage
 ./appimagetool AppDir
+# ---
