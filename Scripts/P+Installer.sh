@@ -1,187 +1,37 @@
-#!/bin/sh
+#!/bin/sh -e
+# P+Installer.sh
 
-# --- Attempts to determine the number of cores in the CPU. ---
-# Source: https://gist.github.com/jj1bdx/5746298
-# Linux and similar...
-CPUS=$(getconf _NPROCESSORS_ONLN 2>/dev/null)
-# FreeBSD and similar...
-[ -z "$CPUS" ] && CPUS=$(getconf NPROCESSORS_ONLN)
-# Solaris and similar...
-[ -z "$CPUS" ] && CPUS=$(ksh93 -c 'getconf NPROCESSORS_ONLN')
-# Give up...
-[ -z "$CPUS" ] && CPUS=1
+# --- Config links
+FPPVERSION="2.15" # Name of FPP version, used in folder name
+CONFIGNAME="fppconfig"
+COMMITHASH="d6800a124dbba118e297188900d07adfea661b87" # Full commit hash
+CONFIGLINK="https://github.com/Birdthulu/FPM-Installer/raw/master/config/$FPPVERSION-$CONFIGNAME.tar.gz" # Packed configs, can be found under config/ or config/legacy/
+GITCLONELINK="https://github.com/Birdthulu/Ishiiruka" # Version of Ishiiruka
+SdCardFileName="ProjectPlusSdCard215.tar.gz"
+SdCardDlHash="0anckw4hrxlqn5i"
+SdCardLink="http://www.mediafire.com/file/$SdCardDlHash/$SdCardFileName/file"
 # ---
 
-# --- define custom config links here!
-FPPVERSION="" # name of FPP version, used in folder name
-COMMITHASH="" # full commit hash 
-GITCLONELINK="" # Version of Ishiiruka
-CONFIGLINK="" # Packed configs, can be found under config/ or config/legacy/
+# --- Delete FasterProjectPlus folders
+rm -rf FasterProjectPlus*/
+echo "Deleted all FPP folders!"
 # ---
 
-# --- delete all "FasterProjectPlus" folders filled with incomplete installations
-echo ""
-echo "Attempting to delete incomplete installations of FPP..."
-for f in FasterProjectPlus*; do
-	if [ -d "${f}" ] && [ ! -d "$f/bin" ]; then
-		echo "Found incomplete installation at $f/, deleting."
-		rm -rf "$f" # is incomplete if bin/ doesn't exist
-	fi
-done
-# ---
-
-# --- ask if you want to delete all remaining FPP* folders
-echo ""
-echo "Would you like to overwrite ALL of your previous installations? (y/N)"
-read -r RESP
-if [ "$RESP" = "y" ] || [ "$RESP" = "Y" ]; then
-	echo "Are you sure? This action is not reversible! (y/N)"
-	read -r RESP
-	if [ "$RESP" = "y" ] || [ "$RESP" = "Y" ] ; then
-		rm -rf FasterProjectPlus*/
-		echo "Deleted all FPP folders!"
-	fi
-else
-	echo "No changes made!"
-fi
-# ---
-
-# --- ask if the user is on Ubuntu 20.04 or a derivative
-echo ""
-echo "Are you running Ubuntu 20.04 or downstream distribution? This applies a patch allowing the installer to work. (y/N)"
-read -r RESP
-if [ "$RESP" = "y" ] || [ "$RESP" = "Y" ]; then
-	echo "Applying patch!"
-	UBPATCH=1
-else
-	echo "Will not apply patch."
-	UBPATCH=0
-fi
-# ---
-
-if [ "$UBPATCH" != 1 ]; then
-	# --- ask if the user is on Arch or a derivative
-	echo ""
-	echo "Are you running Arch or downstream distribution? This applies a patch allowing the installer to work. (y/N)"
-	read -r RESP
-	if [ "$RESP" = "y" ] || [ "$RESP" = "Y" ]; then
-		echo "Applying patch!"
-		ARPATCH=1
-	else
-		echo "Will not apply patch."
-		ARPATCH=0
-	fi
-fi
-# ---
-
-
-# --- if custom links aren't defined, prompt to choose a version
-if [ -z "$FPPVERSION" ] || [ -z "$COMMITHASH" ] || [ -z "$GITCLONELINK" ] || [ -z "$CONFIGLINK" ]; then #ORs used to ensure everything filled out
-	echo ""
-	echo "Which version of Faster Project Plus would you like to install? (default: 1)"
-	echo "1.) 2.15 (Latest version)"
-	echo "2.) 2.1.1"
-	read -r RESP
-	if [ "$RESP" -eq 2 ] 2> /dev/null; then
-	 	FPPVERSION="2.1.1"
-		CONFIGNAME="fppconfig"
-		COMMITHASH="9054c90d9170f47a707933eac8cf0d67d553e951"
-		CONFIGLINK="https://github.com/Birdthulu/FPM-Installer/raw/master/config/legacy/$FPPVERSION-$CONFIGNAME.tar.gz"
-		GITCLONELINK="https://github.com/Birdthulu/Ishiiruka"
-		SdCardFileName="ProjectPlusSdCard211.tar.gz"
-		SdCardDlHash="7f7q8a6m8plyq16"
-		SdCardLink="http://www.mediafire.com/file/$SdCardDlHash/$SdCardFileName/file"
-	else
-		FPPVERSION="2.15"
-		CONFIGNAME="fppconfig"
-		COMMITHASH="d6800a124dbba118e297188900d07adfea661b87"
-		CONFIGLINK="https://github.com/Birdthulu/FPM-Installer/raw/master/config/$FPPVERSION-$CONFIGNAME.tar.gz"
-		GITCLONELINK="https://github.com/Birdthulu/Ishiiruka"
-		SdCardFileName="ProjectPlusSdCard215.tar.gz"
-		SdCardDlHash="0anckw4hrxlqn5i"
-		SdCardLink="http://www.mediafire.com/file/$SdCardDlHash/$SdCardFileName/file"
-	fi
-	echo "Installing version $FPPVERSION!"
-else
-	echo ""
-	echo "Attempting to install version $FPPVERSION!"
-fi
-
-# Set FOLDERNAME based on FPP version
+# --- Set FOLDERNAME based on FPP version
 FOLDERNAME="FasterProjectPlus-${FPPVERSION}"
 
-# --- check for previously installed version, ask if overwrite is wanted
-if [ -d "$FOLDERNAME" ]; then
-	echo "
-	FPP Folder with same version found! Would you like to overwrite? (y/N)"
-	read -r RESP
-	if [ "$RESP" = "y" ] || [ "$RESP" = "Y" ]; then
-		echo "Are you sure? This action is not reversible! (y/N)"
-		read -r RESP
-		if [ "$RESP" = "y" ] || [ "$RESP" = "Y" ] ; then
-			rm -r "$FOLDERNAME"
-			echo "Deleted!"
-		else
-			echo "Quitting!"
-			exit
-		fi
-	else
-		echo "Quitting!"
-		exit
-	fi
-fi
+# --- Add Gamecube adapter rules
+# sudo rm -f /etc/udev/rules.d/51-gcadapter.rules # Remove even if doesn't exist
+# echo '#GameCube Controller Adapter
+# 			SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="0337", TAG+="uaccess"
+
+# 			#Mayflash DolphinBar
+# 			SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="0306", TAG+="uaccess"' | sudo tee /etc/udev/rules.d/51-gcadapter.rules > /dev/null # pipe to write-protected file, remove STDOUT
+# sudo udevadm control --reload-rules
+# echo "Gamecube adapter rules added!"
 # ---
 
-
-# --- prompt to install adapter support
-echo "
-Would you like to install udev rules for your Wii U adapter? (y/N) (Necessary for reduced-lag direct adapter connection)"
-read -r RESP
-if [ "$RESP" = "y" ] || [ "$RESP" = "Y" ]; then
-	if [ ! -z "${IN_NIX_SHELL++}" ]; then
-		echo "please add services.udev.extraRules = ''"
-		echo 'SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="0337", MODE="0666";'
-		echo 'SUBSYSTEMS=="usb", ATTRS{idVendor}=="1209", ATTRS{idProduct}=="2300", SYMLINK+="model01", ENV{ID_MM_DEVICE_IGNORE}:="1", ENV{ID_MM_CANDIDATE}:="0";'
-		echo 'SUBSYSTEMS=="usb", ATTRS{idVendor}=="1209", ATTRS{idProduct}=="2301", SYMLINK+="model01", ENV{ID_MM_DEVICE_IGNORE}:="1", ENV{ID_MM_CANDIDATE}:="0";'
-		echo "'';"
-	else
-		sudo rm -f /etc/udev/rules.d/51-gcadapter.rules # remove even if doesn't exist
-		echo 'SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="0337", MODE="0666"' | sudo tee /etc/udev/rules.d/51-gcadapter.rules > /dev/null # pipe to write-protected file, remove STDOUT
-		sudo udevadm control --reload-rules
-		echo "Rules added!"
-	fi
-else
-	echo "No changes made!"
-fi
-# ---
-
-# --- prompt to queue shortcut creation for later
-echo "
-Would you like to make a desktop shortcut? (Y/n)"
-read -r RESP
-if [ ! "$RESP" = "n" ] && [ ! "$RESP" = "N" ]; then
-	SHORTCUTBOOL=1
-	echo "Desktop shortcut queued!"
-else
-	SHORTCUTBOOL=0
-	echo "No changes made!"
-fi
-# ---
-
-# --- prompt for -j flag (# of cores utilized)
-echo ""
-echo "CPU Threads detected: $CPUS"
-echo "How many threads would you like to use to compile? (passed to make as -j flag, default: $CPUS, range: 1 - $(( CPUS )))"
-read -r RESP
-if [ "$RESP" -ge 1 ] 2> /dev/null && [ "$RESP" -le $((CPUS + 1)) ] 2> /dev/null; then
-	CPUS=$RESP 
-else
-	CPUS=$CPUS
-fi
-echo "Using $CPUS thread(s)!"
-# ---
-
-# --- enter folder, download and extract needed files
+# --- Make folder, enter and download then extract needed files
 echo ""
 mkdir "$FOLDERNAME" && cd "$FOLDERNAME"
 echo "Downloading config files..."
@@ -198,6 +48,7 @@ rm "$COMMITHASH.tar.gz"
 echo "" #spacing
 mv "Ishiiruka-$COMMITHASH" Ishiiruka
 cd Ishiiruka
+# ---
 
 # --- Patch tarball to display correct hash to other netplay clients
 echo "Patching tarball..."
@@ -211,53 +62,33 @@ echo "Patching DiscExtractor.h"
 sed -i "s|#include <optional>|#include <optional>\n#include <string>|g" Source/Core/DiscIO/DiscExtractor.h
 # ---
 
-# --- Set compiler to ggc-8 for Arch
-if [ "$ARPATCH" -eq 1 ]; then
-	echo "Setting compiler to gcc-8 for Arch based distros"
-	# Set C compiler and C++ compiler to GCC8
-	export CC="gcc-8"
-	export CXX="g++-8"
-else
-	echo "Skipping patch for Arch based distros"
-fi
-# ---
-
 # --- Patch wxWidgets3 for Ubuntu 20.04
-if [ "$UBPATCH" -eq 1 ]; then
-	echo "Patching wxWidgets3 for Ubuntu 20.04 based distros"
-	sed -i "s| OR NOT X11_Xinerama_FOUND||g" Externals/wxWidgets3/CMakeLists.txt
-	sed -i "s|needs Xinerama and|needs|g" Externals/wxWidgets3/CMakeLists.txt
-	sed -i "s|\t\t\${X11_Xinerama_LIB}||g" Externals/wxWidgets3/CMakeLists.txt
-else
-	echo "Skipping patch for Ubuntu 20.04 based distros"
-fi
+echo "Patching wxWidgets3 for Ubuntu 20.04 based distros"
+sed -i "s| OR NOT X11_Xinerama_FOUND||g" Externals/wxWidgets3/CMakeLists.txt
+sed -i "s|needs Xinerama and|needs|g" Externals/wxWidgets3/CMakeLists.txt
+sed -i "s|\t\t\${X11_Xinerama_LIB}||g" Externals/wxWidgets3/CMakeLists.txt
 # ---
 
-
-# --- move wx files into source
+# --- Move wx files into source
 cp Externals/wxWidgets3/include/wx Source/Core/ -r
 cp Externals/wxWidgets3/wx/* Source/Core/wx/ 
 # ---
 
-# --- move necessary config files into the build folder
+# --- Move necessary config files into the build folder
 echo "Adding FPP config files..."
 mkdir build && cd build
 mv ../../Binaries .
-mv ../Data/ishiiruka.png Binaries/
+cp ../Data/ishiiruka.png Binaries/
 # ---
 
-# --- cmake and compile
-echo "cmaking..."
-if [ ! -z "${IN_NIX_SHELL++}" ]; then
-	cmake .. -DLINUX_LOCAL_DEV=true -DGTK2_GLIBCONFIG_INCLUDE_DIR=${glib}/lib/glib-2.0/include -DGTK2_GDKCONFIG_INCLUDE_DIR=${gtk2}/lib/gtk-2.0/include -DGTK2_INCLUDE_DIRS=${gtk2}/lib/gtk-2.0 -DENABLE_LTO=True
-else
-	cmake .. -DLINUX_LOCAL_DEV=true
-fi
+# --- Cmake and compile
+echo "Cmaking..."
+cmake .. -DLINUX_LOCAL_DEV=true -DCMAKE_INSTALL_PREFIX=/usr
 echo "Compiling..."
-make -j $CPUS -s
+make -j$(nproc) # Make with all cores
 # ---
 
-# --- create .desktop file
+# --- Create .desktop file
 touch Binaries/ishiiruka.desktop
 echo "[Desktop Entry]
 Type=Application
@@ -268,5 +99,11 @@ Categories=Emulator;Game;
 Icon=ishiiruka
 Keywords=ProjectM;Project M;ProjectPlus;Project Plus;Project+
 Name=Faster Project M" >> Binaries/ishiiruka.desktop
+cp Binaries/ishiiruka.desktop ../Data/ishiiruka.desktop
 # ---
 
+# --- Delete existing AppDir, make a new one and Make install into it
+rm -rf AppDir/
+mkdir AppDir
+make install DESTDIR=AppDir
+# ---
