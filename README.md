@@ -14,4 +14,4 @@ Steps for running AppImage
 
 Note:
 1) You will have to provide Brawl.iso, Project+.elf, sd.raw and optionally icon.png
-2) User configuration files are located at ~/.local/share/ishiiruka and ~/.config/ishiiruka
+2) User configuration files are located at ~/.local/share/ishiiruka, ~/.config/ishiiruka, ~/.cache/ishiiruka and ~/.ishiiruka
