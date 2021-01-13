@@ -1,6 +1,10 @@
 #!/bin/bash -e
 # BuildAppImage.sh
 
+# --- Change into build directory
+cd FasterProjectPlus-2.15/Ishiiruka/build
+# ---
+
 APPIMAGE_STRING="Faster_Project_M-x86_64.AppImage"
 
 LINUXDEPLOY_PATH="https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous"
