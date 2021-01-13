@@ -37,7 +37,7 @@ rm -f AppDir/AppRun
 # ---
 
 # --- Create new AppRun which sets relative library path before calling binary
-cat > ./AppRun <<\EOF
+cat > ./AppDir/AppRun <<\EOF
 #!/bin/bash
 APPDIR="$(dirname "$(readlink -f "${0}")")"
 export LD_LIBRARY_PATH="${APPDIR}/usr/lib:${LD_LIBRARY_PATH}"
