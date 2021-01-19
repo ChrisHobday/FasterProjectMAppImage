@@ -18,6 +18,14 @@ Moving the AppImage after creating the desktop file will cause the desktop file 
 1) Make AppImage executable (chmod +x FasterProjectPlus-VERSION.AppImage)
 2) Launch AppImage (./FasterProjectPlus-VERSION.AppImage)
 
+## Dolphin configuration steps
+1) In Config>Paths add the "ISO Directory" that has the P+ ELF file
+2) In Config>Paths set the "Default ISO" to the brawl ISO file
+3) In Config>Paths set the "SD Card Path" to the P+ SD Card file
+
+## Launching P+
+1) Doubleclick the P+ ELF file in the main dolphin window
+
 ##### Note:
 1) You will have to provide Brawl.iso, Project+.elf, sd.raw and optionally icon.png
 2) User configuration files are located at ~/.local/share/ishiiruka, ~/.config/ishiiruka, ~/.cache/ishiiruka and ~/.ishiiruka
