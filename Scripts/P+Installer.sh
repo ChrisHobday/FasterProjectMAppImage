@@ -2,13 +2,13 @@
 # P+Installer.sh
 
 # --- Config links
-FPPVERSION="2.15" # Name of FPP version, used in folder name
+FPPVERSION="2.2" # Name of FPP version, used in folder name
 CONFIGNAME="fppconfig"
-COMMITHASH="d6800a124dbba118e297188900d07adfea661b87" # Full commit hash
-CONFIGLINK="https://github.com/Birdthulu/FPM-Installer/raw/master/config/$FPPVERSION-$CONFIGNAME.tar.gz" # Packed configs, can be found under config/ or config/legacy/
-GITCLONELINK="https://github.com/Birdthulu/Ishiiruka" # Version of Ishiiruka
-SdCardFileName="ProjectPlusSdCard215.tar.gz"
-SdCardDlHash="0anckw4hrxlqn5i"
+COMMITHASH="4aa077433453fcd06d28b66a52f6f939c46254c9"
+CONFIGLINK="https://github.com/Birdthulu/FPM-Installer/raw/master/config/$FPPVERSION-$CONFIGNAME.tar.gz"
+GITCLONELINK="https://github.com/Birdthulu/Ishiiruka"
+SdCardFileName="ProjectPlusSdCard22.tar.gz"
+SdCardDlHash="m4lxtm1uu64odl7"
 SdCardLink="http://www.mediafire.com/file/$SdCardDlHash/$SdCardFileName/file"
 # ---
 

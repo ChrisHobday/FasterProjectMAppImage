@@ -2,7 +2,7 @@
 # BuildAppImage.sh
 
 # --- Change into build directory
-cd FasterProjectPlus-2.15/Ishiiruka/build
+cd FasterProjectPlus-2.2/Ishiiruka/build
 # ---
 
 APPIMAGE_STRING="Faster_Project_M-x86_64.AppImage"
