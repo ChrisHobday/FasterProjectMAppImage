@@ -13,6 +13,6 @@ The AppImage will be located at Scripts/FasterProjectPlus-2.15/Ishiiruka/build/F
 1) Make AppImage executable (chmod +x FasterProjectPlus-2.15.AppImage)
 2) Launch AppImage (./FasterProjectPlus-2.15.AppImage)
 
-## Note:
+##### Note:
 1) You will have to provide Brawl.iso, Project+.elf, sd.raw and optionally icon.png
 2) User configuration files are located at ~/.local/share/ishiiruka, ~/.config/ishiiruka, ~/.cache/ishiiruka and ~/.ishiiruka
