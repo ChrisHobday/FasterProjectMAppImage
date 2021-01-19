@@ -9,7 +9,7 @@ The AppImage will be located at Scripts/FasterProjectPlus-VERSION/Ishiiruka/buil
 
 ## Optional Linux configuration steps
 1) Run Scripts/AddGCAdapterRules.sh (if you don't already have the controller rules set on your system)
-2) Run Scripts/CreateFPMDesktopFile.sh (creates a desktop file to AppImage in the same directory)
+2) Run Scripts/CreateFPMDesktopFile.sh from inside the same directory as the AppImage (creates a desktop file to AppImage in the same directory)
 
 ##### Note:
 Moving the AppImage after creating the desktop file will cause teh desktop file to no longer work
