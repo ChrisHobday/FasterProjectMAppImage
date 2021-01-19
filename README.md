@@ -28,4 +28,4 @@ Moving the AppImage after creating the desktop file will cause the desktop file 
 2) User configuration files are located at ~/.local/share/ishiiruka, ~/.config/ishiiruka, ~/.cache/ishiiruka and ~/.ishiiruka
 
 ## Launching P+
-1) Doubleclick the P+ ELF file in the main dolphin window
+1) Doubleclick the desired P+ ELF file in the main dolphin window
