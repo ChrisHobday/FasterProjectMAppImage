@@ -19,7 +19,7 @@ Moving the AppImage after creating the desktop file will cause the desktop file 
 2) Launch AppImage (./FasterProjectPlus-VERSION.AppImage)
 
 ## Dolphin configuration steps
-1) In Config>Paths add the "ISO Directory" that has the P+ ELF file
+1) In Config>Paths add the "ISO Directory" that has the P+ ELF files
 2) In Config>Paths set the "Default ISO" to the brawl ISO file
 3) In Config>Paths set the "SD Card Path" to the P+ SD Card file
 
