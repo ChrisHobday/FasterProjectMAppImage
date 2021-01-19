@@ -7,7 +7,7 @@ AppImage for Faster Project M and tools to create it
 4) Run Scripts/P+Installer.sh
 5) Run Scripts/BuildAppImage.sh
 
-The AppImage will be located at Scripts/FasterProjectPlus-2.15/Ishiiruka/build/FasterProjectPlus-2.15.AppImage
+The AppImage will be located at Scripts/FasterProjectPlus-2.15/Ishiiruka/build/FasterProjectPlus-VERSION.AppImage
 
 ## Steps for running AppImage
 1) Make AppImage executable (chmod +x FasterProjectPlus-2.15.AppImage)
