@@ -1,5 +1,5 @@
 #!/bin/sh -e
-# P+Installer.sh
+# FPMInstaller.sh
 
 # --- Config links
 FPPVERSION="2.2" # Name of FPP version, used in folder name
