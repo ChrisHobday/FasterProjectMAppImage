@@ -3,9 +3,7 @@ AppImage for Faster Project M and tools to create it
 
 ## Steps for making AppImage
 1) Fresh Ubuntu install (18.04)
-3) Run Scripts/InstallUbuntuDependencies.sh
-4) Run Scripts/P+Installer.sh
-5) Run Scripts/BuildAppImage.sh
+2) Run Scripts/BuildFPMAppImage.sh
 
 The AppImage will be located at Scripts/FasterProjectPlus-VERSION/Ishiiruka/build/FasterProjectPlus-VERSION.AppImage
 
