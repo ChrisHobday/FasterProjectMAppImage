@@ -17,7 +17,7 @@ GenericName=Wii/GameCube Emulator
 Comment=Ishiiruka fork for SSBPM
 Exec=${APPIMAGELOCATION}
 Categories=Emulator;Game;
-Icon=ishiiruka;dolphin-emu;
+Icon=ishiiruka
 Keywords=ProjectM;Project M;ProjectPlus;Project Plus;Project+
 Name=Faster Project M" >> ~/.local/share/applications/${FPMDESKTOPFILENAME}.desktop
 # ---
