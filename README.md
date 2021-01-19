@@ -12,7 +12,7 @@ The AppImage will be located at Scripts/FasterProjectPlus-VERSION/Ishiiruka/buil
 2) Run Scripts/CreateFPMDesktopFile.sh from inside the same directory as the AppImage (creates a desktop file to AppImage in the same directory)
 
 ##### Note:
-Moving the AppImage after creating the desktop file will cause teh desktop file to no longer work
+Moving the AppImage after creating the desktop file will cause the desktop file to no longer work
 
 ## Steps for running AppImage
 1) Make AppImage executable (chmod +x FasterProjectPlus-VERSION.AppImage)
