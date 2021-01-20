@@ -10,9 +10,6 @@ CONFIGNAME="fppconfig"
 COMMITHASH="4aa077433453fcd06d28b66a52f6f939c46254c9"
 CONFIGLINK="https://github.com/Birdthulu/FPM-Installer/raw/master/config/$FPPVERSION-$CONFIGNAME.tar.gz"
 GITCLONELINK="https://github.com/Birdthulu/Ishiiruka"
-SdCardFileName="ProjectPlusSdCard22.tar.gz"
-SdCardDlHash="m4lxtm1uu64odl7"
-SdCardLink="http://www.mediafire.com/file/$SdCardDlHash/$SdCardFileName/file"
 # ---
 
 # --- Delete FasterProjectPlus folders
