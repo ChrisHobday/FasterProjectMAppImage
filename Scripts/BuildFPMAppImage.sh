@@ -143,7 +143,7 @@ chmod +x AppDir/AppRun
 
 # --- Copy needed files/folders
 cp Binaries/license.txt ${APPDIR_BIN}
-cp Binaries/Changelog.txt ${APPDIR_BIN}
+# cp Binaries/Changelog.txt ${APPDIR_BIN}
 cp Binaries/traversal_server ${APPDIR_BIN}
 # ---
 
