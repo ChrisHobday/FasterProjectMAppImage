@@ -1,4 +1,4 @@
-# Faster Project M AppImage
+# Faster Project M AppImage 2.25
 AppImage for Faster Project M and tools to create it
 
 ## Steps for making AppImage
