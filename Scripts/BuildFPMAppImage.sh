@@ -66,10 +66,11 @@ cp Externals/wxWidgets3/wx/* Source/Core/wx/
 # --- Move necessary config files into the build folder
 echo "Adding FPP config files..."
 mkdir build && cd build
-cp -r ../Data/Sys .
-cp -r ../Data/User .
-cp ../Data/license.txt .
-cp ../Data/ishiiruka.png Binaries/
+mkdir Binaries
+cp -r ../Data/Sys ./Binaries
+cp -r ../Data/User ./Binaries
+cp ../Data/license.txt ./Binaries
+cp ../Data/ishiiruka.png ./Binaries
 # ---
 
 # --- Cmake and compile
