@@ -5,18 +5,18 @@ AppImage for Faster Project M and tools to create it
 1) Fresh Ubuntu install (18.04)
 2) Run Scripts/BuildFPMAppImage.sh
 
-The AppImage will be located at Scripts/FasterProjectPlus-VERSION/Ishiiruka/build/Faster_Project_M-VERSION-x86_64.AppImage
+The AppImage will be located at Scripts/FasterProjectPlus-VERSION/Ishiiruka/build/Faster_Project_M-x86_64.AppImage
 
 ## Optional Linux configuration steps
 1) Run "Scripts/AddGCAdapterRules.sh" (if you don't already have the gamecube adapter rules set on your system)
-2) Run "Scripts/CreateFPMDesktopFile.sh PATH/TO/Faster_Project_M-VERSION-x86_64.AppImage" (to create a .desktop file)
+2) Run "Scripts/CreateFPMDesktopFile.sh PATH/TO/Faster_Project_M-x86_64.AppImage" (to create a .desktop file)
 
 ##### Note:
 Moving the AppImage after creating the desktop file will cause the desktop file to no longer work
 
 ## Steps for running AppImage
-1) Make AppImage executable (chmod +x Faster_Project_M-VERSION-x86_64.AppImage)
-2) Launch AppImage (./Faster_Project_M-VERSION-x86_64.AppImage)
+1) Make AppImage executable (chmod +x Faster_Project_M-x86_64.AppImage)
+2) Launch AppImage (./Faster_Project_M-x86_64.AppImage)
 
 ## Dolphin configuration steps
 1) In Config>Paths add the "ISO Directories" that have the P+ ELF files
