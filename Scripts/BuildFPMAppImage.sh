@@ -6,8 +6,8 @@ sudo apt install -y cmake pkg-config git wget libao-dev libasound2-dev libavcode
 
 # --- Config links
 FPPVERSION="2.25" # Name of FPP version, used in folder name
-CONFIGNAME="fppconfig"
-CONFIGLINK="https://github.com/Birdthulu/FPM-Installer/raw/master/config/$FPPVERSION-$CONFIGNAME.tar.gz"
+# CONFIGNAME="fppconfig"
+# CONFIGLINK="https://github.com/Birdthulu/FPM-Installer/raw/master/config/$FPPVERSION-$CONFIGNAME.tar.gz"
 GITCLONELINK="https://github.com/Birdthulu/Ishiiruka"
 COMMITHASH="0311660c433eb04755c93160bdfe1ea516364c68"
 # ---
@@ -21,14 +21,14 @@ echo "Deleted all FPP folders!"
 FOLDERNAME="FasterProjectPlus-${FPPVERSION}"
 
 # --- Make folder, enter and download then extract needed files
-echo ""
-mkdir "$FOLDERNAME" && cd "$FOLDERNAME"
-echo "Downloading config files..."
-curl -LO# $CONFIGLINK
-echo "Extracting config files..."
-tar -xzf "$FPPVERSION-$CONFIGNAME.tar.gz" --checkpoint-action='exec=printf "%d/410 records extracted.\r" $TAR_CHECKPOINT' --totals
-rm "$FPPVERSION-$CONFIGNAME.tar.gz"
-echo ""
+# echo ""
+# mkdir "$FOLDERNAME" && cd "$FOLDERNAME"
+# echo "Downloading config files..."
+# curl -LO# $CONFIGLINK
+# echo "Extracting config files..."
+# tar -xzf "$FPPVERSION-$CONFIGNAME.tar.gz" --checkpoint-action='exec=printf "%d/410 records extracted.\r" $TAR_CHECKPOINT' --totals
+# rm "$FPPVERSION-$CONFIGNAME.tar.gz"
+# echo ""
 echo "Downloading tarball..."
 curl -LO# "$GITCLONELINK/archive/$COMMITHASH.tar.gz"
 echo "Extracting tarball..."
