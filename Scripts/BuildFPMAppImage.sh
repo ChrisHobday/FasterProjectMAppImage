@@ -22,7 +22,7 @@ FOLDERNAME="FasterProjectPlus-${FPPVERSION}"
 
 # --- Make folder, enter and download then extract needed files
 # echo ""
-# mkdir "$FOLDERNAME" && cd "$FOLDERNAME"
+mkdir "$FOLDERNAME" && cd "$FOLDERNAME"
 # echo "Downloading config files..."
 # curl -LO# $CONFIGLINK
 # echo "Extracting config files..."
