@@ -5,11 +5,11 @@
 sudo apt install -y cmake pkg-config git wget libao-dev libasound2-dev libavcodec-dev libavformat-dev libbluetooth-dev libenet-dev libgtk2.0-dev liblzo2-dev libminiupnpc-dev libopenal-dev libpulse-dev libreadline-dev libsfml-dev libsoil-dev libsoundtouch-dev libswscale-dev libusb-1.0-0-dev libwxbase3.0-dev libwxgtk3.0-dev libxext-dev libxrandr-dev portaudio19-dev zlib1g-dev libudev-dev libevdev-dev libmbedtls-dev libcurl4-openssl-dev libegl1-mesa-dev libpng-dev qtbase5-private-dev libxxf86vm-dev libxmu-dev libxi-dev 
 
 # --- Config links
-FPPVERSION="2.2" # Name of FPP version, used in folder name
+FPPVERSION="2.25" # Name of FPP version, used in folder name
 CONFIGNAME="fppconfig"
-COMMITHASH="4aa077433453fcd06d28b66a52f6f939c46254c9"
 CONFIGLINK="https://github.com/Birdthulu/FPM-Installer/raw/master/config/$FPPVERSION-$CONFIGNAME.tar.gz"
 GITCLONELINK="https://github.com/Birdthulu/Ishiiruka"
+COMMITHASH="0311660c433eb04755c93160bdfe1ea516364c68"
 # ---
 
 # --- Delete FasterProjectPlus folders
@@ -60,7 +60,7 @@ sed -i "s|\t\t\${X11_Xinerama_LIB}||g" Externals/wxWidgets3/CMakeLists.txt
 
 # --- Move wx files into source
 cp Externals/wxWidgets3/include/wx Source/Core/ -r
-cp Externals/wxWidgets3/wx/* Source/Core/wx/ 
+cp Externals/wxWidgets3/wx/* Source/Core/wx/
 # ---
 
 # --- Move necessary config files into the build folder
